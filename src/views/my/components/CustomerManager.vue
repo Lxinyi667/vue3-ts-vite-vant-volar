@@ -1,0 +1,94 @@
+<script setup lang="ts">
+  import useClipboard from 'vue-clipboard3'
+  import {Toast} from 'vant'
+  const props = defineProps({
+    item: {
+        type: Object as any
+    }
+  })
+  const emits = defineEmits(['back'])
+  const { toClipboard } = useClipboard()
+  const shareLink = () => {
+    toClipboard(props.item.manage_name)
+    Toast('复制成功')
+  }
+</script>
+<template>
+  <div class="manager-popup">
+    <div class="manager-top">
+        <!-- <img :src="props.item.manage_it_head" /> -->
+        <img src="https://storage-public.zhaopin.cn/bapp/weex/1589213594714491363/3FvQEg292Nm3OLW5A4E571E3CA048ECA9BDED52E5AB9A776.jpg" alt="" >
+        <p>客户王经理</p>
+    </div>
+    <dl>
+        <dd>
+            <label>电话：</label>
+            <!-- <span>{{props.item.manage_name}}</span> -->
+            <span>13302517226</span>
+
+            <strong @click="shareLink">复制</strong>
+        </dd>
+        <dd>
+            <label>微信：</label>
+            <!-- <span>{{props.item.manage_name}}</span> -->
+            <span>13740815226</span>
+            <strong @click="shareLink">复制</strong>
+        </dd>
+    </dl>
+    <button @click="emits('back')">返回</button>
+  </div>
+</template>
+<style scoped>
+  .manager-popup{
+    width: 13.07rem;
+    height: 15.42rem;
+    background: url(@/assets/img/my/manager-back.png) no-repeat;
+    background-size: 100%;
+    text-align: center;
+  }
+  .manager-top img{
+    width: 2.16rem;
+    height: 2.16rem;
+    border-radius: 50%;
+    margin: 1.55rem 0 0.67rem;
+  }
+  .manager-top p{
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-bottom: 2.96rem;
+  }
+
+  dl{
+    font-size: 0.8rem;
+    padding: 0 1.33rem 0 1.6rem;
+  }
+  dd{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.04rem;
+  }
+  dd label{
+    color: #999999;
+  }
+  dd span{
+    color: #333333;
+  }
+  dd strong{
+    color: #FF9415;
+  }
+  button{
+    width: 10.21rem;
+    height: 1.92rem;
+    border: 1px solid #FF6F00;
+    border-radius: 0.16rem;
+    font-size: 0.85rem;
+    line-height: 1.92rem;
+    text-align: center;
+    background: #ffffff;
+    font-weight: 400;
+    color: #FF6F00;
+  }
+</style>
